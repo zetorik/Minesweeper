@@ -8,7 +8,7 @@ from utils.widgets import SettingLine,TileEdit
 from utils.resources import techies,techies_mine,start_icon,retur,cool_font
 from utils.map_converter import bob_map_to_map, map_to_bob_map, binary_to_map
 from utils.tile import Tile
-from utils.ui_utils import set_enabled_layout,get_auto_mines,get_color
+from utils.ui_utils import set_enabled_layout,get_auto_mines,get_color,dark_palette
 from utils.constants import TILE_SIZE
 
 class MapCreatorUI(QMainWindow):
@@ -344,6 +344,7 @@ class MapCreatorUI(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication()
+    app.setPalette(dark_palette)
     screen_w,screen_h = app.primaryScreen().size().toTuple()
     window = MapCreatorUI(screen_w,screen_h)
     window.show()
