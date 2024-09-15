@@ -323,8 +323,9 @@ class MinesweeperMapGenerator:
         while self.check_map() == False or (self.no_guess == True and solver.solve(deepcopy(self.minesweeper.map_data))==False ):
                 
             i+=1
-            if i > 1000000:
+            if i > 1000:
                 return False
+            
             print('creating new map')
             self.generate_tile_map()
 
@@ -342,8 +343,6 @@ class Solver:
     def solve(self,tile_map:TILE_MAP) -> bool:
         self.game = Minesweeper(tile_map)
         self.game.start_game()
-
-        test_affected_tiles:list[Tile] = []
         
         while True:
             decisions = self.get_logic_decisions()
@@ -353,11 +352,8 @@ class Solver:
 
             for dec in decisions:
                 
-                
                 dig,tile = dec
-                if tile in test_affected_tiles:
-                    print('umm',tile.get_pos())
-                test_affected_tiles.append(tile)
+
                 if dig == True:
                     result,_ = self.game.recursive_reveal(tile)
                     
